@@ -30,4 +30,9 @@ DEBUG [main] (HelloWorld.kt:10) - Hello World!
 
 BUILD SUCCESSFUL in 1s
 3 actionable tasks: 2 executed, 1 up-to-date
+
+$ ./gradlew lintKotlin
+
+BUILD SUCCESSFUL in 562ms
+1 actionable task: 1 executed
 ----

@@ -6,6 +6,6 @@ import org.slf4j.LoggerFactory
 // at runtime while maintaining the logging interface throughout the code.
 val logger = LoggerFactory.getLogger("application")
 
-fun main (args: Array<String>) {
+fun main(args: Array<String>) {
     logger.debug("Hello World!")
 }
