@@ -5,7 +5,19 @@ plugins {
     application
     `java-library`
     kotlin("jvm") version "1.3.61"
+    checkstyle
+    idea
 }
+
+idea {
+    module {
+        isDownloadJavadoc = true
+        isDownloadSources = true
+    }
+}
+
+tasks.checkstyleMain { group = "verification" }
+tasks.checkstyleTest { group = "verification" }
 
 group = "io.github.newlight77"
 version = "0.0.1-SNAPSHOT"
@@ -22,9 +34,12 @@ dependencies {
     runtimeOnly("org.apache.logging.log4j:log4j-core:2.11.1")
     runtimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.11.1")
 
-	testImplementation("org.junit.jupiter:junit-jupiter:5.6.0")
-	testImplementation("org.mockito:mockito-junit-jupiter:3.3.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.6.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.0")
+
 	testImplementation("org.assertj:assertj-core:3.11.1")
+    testImplementation("io.mockk:mockk:1.9.3")
 }
 
 configurations {                            
@@ -47,6 +62,13 @@ java {
 
 application {
     mainClassName = "io.github.newlight77.bootstrap.HelloWorldKt"
+}
+
+tasks.compileKotlin {
+    kotlinOptions {
+        jvmTarget = "11"
+        javaParameters = true
+    }
 }
 
 tasks.withType<Test> {
